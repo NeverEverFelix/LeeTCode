@@ -1,0 +1,36 @@
+Given two strings s and t, return true if t is an anagram of s, and false otherwise.
+
+An Anagram is a word or phrase formed by rearranging the letters of a different word or phrase, typically using all the original letters exactly once.
+
+Example 1: 
+Input: s = "anagram", t = "nagaram"
+Output: true
+
+Exaplanation :
+To begin with if String "s" and String "t" are different length there is no way they can be anagrams. Therefore I began the solution with an "If" statement 
+checking the length of both strings. For the rest of the solution if you create two char[] arrays for the respective string parameters and use the method:
+.toCharArray() each character of a string will be palced into an array. Then I used Array.parallelSort() on both char[] arrays. 
+the method  Arrays.parallelSort() yields better performance than the typical .sort() and allowed me to outperfrom 86.5 % of submissions.
+Lasty, another "if" statment using .equals() to check whether the two arrays are equal. If both arrays have the same characters in order it will return true.
+
+
+Code: 
+
+class Solution {
+    public boolean isAnagram(String s, String t) {
+      if(s.length()!=t.length()){
+          return false;
+      }
+      char a[] = s.toCharArray();
+      char b[] = t.toCharArray();
+
+      Arrays.parallelSort(a);
+      Arrays.parallelSort(b);
+
+      if(Arrays.equals(a,b)==true){
+          return true;
+      }
+      return false;
+}
+}
+
